@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SurvivalCore">
+    <output-path>$USER_HOME$/Desktop/SurvivalServer - Minecraft/plugins</output-path>
+    <root id="archive" name="SurvivalCore.jar">
+      <element id="module-output" name="SurvivalCore" />
+    </root>
+  </artifact>
+</component>
