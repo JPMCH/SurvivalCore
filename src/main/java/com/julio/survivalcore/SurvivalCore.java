@@ -1,5 +1,6 @@
 package com.julio.survivalcore;
 
+import com.julio.survivalcore.api.Console;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
@@ -12,6 +13,7 @@ public class SurvivalCore extends JavaPlugin {
 
     private static final Random random = new Random();
     private static final String consolePrefix = "§8[§a§lSERVER§8]§f ";
+    private static final String consoleNodePrefix = "§8[§a§lSERVER-%node%§8]§f ";
     private static int updateCooldown;
 
     public String flag;
@@ -41,8 +43,7 @@ public class SurvivalCore extends JavaPlugin {
         Bukkit.getScheduler().runTaskTimerAsynchronously(instance,() -> {
             String flagBody = "FLAG-";
             flag = flagBody+""+random.nextFloat(5000);
-            Bukkit.getConsoleSender()
-                    .sendMessage("[SurvivalCore] new Flag! ("+flag+")");
+            Console.send("new Flag! ("+flag+")");
         }, 20L *seconds, 20L *seconds);
     }
 
@@ -63,9 +64,8 @@ public class SurvivalCore extends JavaPlugin {
         String[] startupMSGs = new String[3];
         startupMSGs[0] = ChatColor.BLUE + "[SurvivalCore] initializing...";
         startupMSGs[1] = ChatColor.YELLOW + "       * Loading Resources";
-        startupMSGs[2] = ChatColor.YELLOW + "       * Version: ? ? ?";
-
-        ccm.sendMessage(startupMSGs);
+        startupMSGs[2] = ChatColor.YELLOW + "       * Version: "+this;
+        Console.send(startupMSGs);
     }
     //
 
@@ -84,6 +84,10 @@ public class SurvivalCore extends JavaPlugin {
 
     public static String getConsolePrefix() {
         return consolePrefix;
+    }
+
+    public static String getConsoleNodePrefix() {
+        return consoleNodePrefix;
     }
 
     public static Random getRandom() {
